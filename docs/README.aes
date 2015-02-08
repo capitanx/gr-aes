@@ -1,0 +1,27 @@
+This is the aes-write-a-block package meant as a guide to building
+out-of-tree packages. To use the aes blocks, the Python namespaces
+is in 'aes', which is imported as:
+
+    import aes
+
+See the Doxygen documentation for details about the blocks available
+in this package. A quick listing of the details can be found in Python
+after importing by using:
+
+    help(aes)
+
+To build the python package you must do:
+
+	$ mkdir build
+	$ cd build
+	$ cmake ..
+	$ make
+	$ make install
+
+And for the GRC block:
+
+	$ mkdir grc/build
+	$ cd grc/build
+	$ cmake ..
+	$ make install
+

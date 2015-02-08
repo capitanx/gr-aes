@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<block>
+  <name>AES Decrypt</name>
+  <key>aes_decrypt_py_bb</key>
+  <category>AES</category>
+  <import>import aes</import>
+  <make>aes.decrypt_py_bb($key, $iv, $mode())</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Key</name>
+    <key>key</key>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>IV</name>
+    <key>iv</key>
+    <type>string</type>
+	<hide>#if $mode() == '1' then 'all' else 'none'#</hide>
+  </param>
+
+  <!-- Mode variable numbers from:
+	   https://www.dlitz.net/software/pycrypto/api/current/Crypto.Cipher.AES-module.html -->
+  <param>
+    <name>Mode</name>
+    <key>mode</key>
+    <type>enum</type>
+
+	<option>
+	  <name>CFB</name>
+	  <key>3</key>
+	  <opt>type:int</opt>
+    </option>
+	<option>
+	  <name>ECB</name>
+	  <key>1</key>
+	  <opt>type:int</opt>
+    </option>
+	<option>
+	  <name>CBC</name>
+	  <key>2</key>
+	  <opt>type:int</opt>
+    </option>
+	<option>
+	  <name>OFB</name>
+	  <key>5</key>
+	  <opt>type:int</opt>
+    </option>
+  </param>
+
+  <check>len($key) in (16, 24, 32)</check>
+  <check>#if $mode() == '1' then True else False# or len($iv) in (16, 24, 32)</check>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+
+<doc>
+AES Decrypt block, for use with the gnuradio. It support those modes:
+
+	* ECB: Fixed block mode (multiple of key) and don't use a IV.
+	* CBC: Fixed block mode (multiple of key / IV)
+	* CFB: Self sync stream cipher. Don't need extra padding or fixed blocks.
+	* OFB: Sync stream mode (multiple of key / IV)
+
+The modes ECB, CBC and OFB needs multiples of 16, 24 or 32 bytes (the used key length)
+You must use padding before to feed the AES block in those modes.
+
+The key / IV length can be:
+
+	* 16 bytes for use AES 128
+	* 24 bytes for use AES 192
+	* 32 bytes for use AES 256
+
+This block automatically select the adequate mode for the supplied key length.
+</doc>
+
+</block>
