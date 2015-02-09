@@ -31,7 +31,7 @@ from Crypto import Random
 import hashlib
 
 
-class decrypt_py_bb(gr.sync_block):
+class aes_decrypt_py_bb(gr.sync_block):
     """
     AES Decrypt block
     """
@@ -40,7 +40,7 @@ class decrypt_py_bb(gr.sync_block):
         self.iv   = iv
         self.mode = mode
         gr.sync_block.__init__(self,
-            name="decrypt_py_bb",
+            name="aes_decrypt_py_bb",
             in_sig=[numpy.uint8],
             out_sig=[numpy.uint8])
 

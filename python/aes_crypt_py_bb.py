@@ -30,7 +30,7 @@ from Crypto import Random
 # SHA-256 and MD5
 import hashlib
 
-class crypt_py_bb(gr.sync_block):
+class aes_crypt_py_bb(gr.sync_block):
     """
     AES Crypt block
     """
@@ -39,7 +39,7 @@ class crypt_py_bb(gr.sync_block):
         self.iv   = iv
         self.mode = mode
         gr.sync_block.__init__(self,
-            name="crypt_py_bb",
+            name="aes_crypt_py_bb",
             in_sig=[numpy.uint8],
             out_sig=[numpy.uint8])
 

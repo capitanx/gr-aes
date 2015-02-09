@@ -23,7 +23,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from crypt_py_bb import crypt_py_bb
 
-class qa_crypt_py_bb (gr_unittest.TestCase):
+class qa_aes_crypt_py_bb (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()

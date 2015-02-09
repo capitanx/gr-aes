@@ -4,7 +4,7 @@
   <key>aes_crypt_py_bb</key>
   <category>AES</category>
   <import>import aes</import>
-  <make>aes.crypt_py_bb($key, $iv, $mode())</make>
+  <make>aes.aes_crypt_py_bb($key, $iv, $mode())</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
