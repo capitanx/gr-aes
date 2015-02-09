@@ -31,6 +31,6 @@ except ImportError:
 	pass
 
 # import any pure python here
-from crypt_py_bb import crypt_py_bb
-from decrypt_py_bb import decrypt_py_bb
+from aes_crypt_py_bb import aes_crypt_py_bb
+from aes_decrypt_py_bb import aes_decrypt_py_bb
 #
