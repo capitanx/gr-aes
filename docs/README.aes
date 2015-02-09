@@ -16,12 +16,21 @@ To build the python package you must do:
 	$ cd build
 	$ cmake ..
 	$ make
-	$ make install
+	# make install
 
 And for the GRC block:
 
 	$ mkdir grc/build
 	$ cd grc/build
 	$ cmake ..
-	$ make install
+	# make install
+
+If you dont have the /usr/local/share/gnuradio path in GRC you can add
+it to the global profile in /etc/gnuradio/conf.d/grc.conf or the user
+profile in ~/.gnuradio/config.conf
+
+	[grc]
+	global_blocks_path = /usr/share/gnuradio/grc/blocks:/usr/local/share/gnuradio/grc/blocks
+	local_blocks_path =
+	xterm_executable = xterm
 
